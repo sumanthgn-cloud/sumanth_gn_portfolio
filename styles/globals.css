@@ -1,10 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* In style.css or globals.css*/
+.animate-blink {
+    animation: blink 1s step-end infinite;
+}
 
-/* Dark Mode Specific Styles */
-@layer base {
-  html {
-    @apply bg-dark text-cloud-white;
-  }
+@keyframes blink {
+    from, to {
+        background-color: currentColor;
+    }
+    50% {
+        background-color: transparent;
+    }
 }
