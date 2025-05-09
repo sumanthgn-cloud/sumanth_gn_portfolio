@@ -1,0 +1,13 @@
+/* In style.css or globals.css*/
+.animate-blink {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    from, to {
+        background-color: currentColor;
+    }
+    50% {
+        background-color: transparent;
+    }
+}
