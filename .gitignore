@@ -1,9 +1,0 @@
-# Node, macOS, Windows, Linux, and editor junk
-.DS_Store
-Thumbs.db
-*.log
-*.tmp
-*.swp
-.vscode/
-.idea/
-.env 
