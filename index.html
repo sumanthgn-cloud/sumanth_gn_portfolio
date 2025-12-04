@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sumanth | Digital Marketing & UI/UX Portfolio</title>
-    <meta name="description" content="Portfolio of Sumanth - Digital Marketing Enthusiast specializing in SEO, Content Strategy, Branding, and UI/UX Design.">
-    
+    <meta name="description"
+        content="Portfolio of Sumanth - Digital Marketing Enthusiast specializing in SEO, Content Strategy, Branding, and UI/UX Design.">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         brand: {
                             50: '#f0f9ff',
@@ -35,24 +35,64 @@
     </script>
 
     <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
         .fade-in-up {
             animation: fadeInUp 0.8s ease-out forwards;
             opacity: 0;
             transform: translateY(20px);
         }
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
 
-        .project-card { transition: all 0.3s ease; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1); }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 0.1s;
+        }
+
+        .delay-200 {
+            animation-delay: 0.2s;
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Background Gradient */
+        .hero-bg {
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, rgba(14, 165, 233, 0.05) 50%, transparent 100%);
+        }
     </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900">
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-100 selection:text-brand-900 relative">
 
+    <!-- NAVBAR -->
     <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
@@ -65,65 +105,527 @@
                         <a href="#skills" class="hover:text-brand-600 transition font-medium">Skills</a>
                         <a href="#projects" class="hover:text-brand-600 transition font-medium">Projects</a>
                         <a href="#experience" class="hover:text-brand-600 transition font-medium">Experience</a>
-                        <a href="#contact" class="px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition font-medium">Contact</a>
+                        <a href="#contact"
+                            class="px-4 py-2 rounded-full bg-brand-600 text-white hover:bg-brand-700 transition font-medium">Contact</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ================= HERO SECTION WITH WORKING VIDEO ================ -->
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div class="max-w-4xl mx-auto px-4 text-center">
+    <!-- HERO SECTION -->
+    <header class="relative pt-28 pb-20 lg:pt-40 lg:pb-32 overflow-hidden hero-bg">
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
 
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 fade-in-up">
-                Hi, I’m Sumanth — <br>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-900 mb-8 fade-in-up tracking-tight">
+                I help small businesses turn simple websites into <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-accent">
-                    Digital Marketing Enthusiast
+                    working digital funnels.
                 </span>
             </h1>
 
-            <div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-white bg-black fade-in-up">
-                <video id="heroVid"
-                       playsinline
-                       muted
-                       loop
-                       autoplay
-                       preload="metadata"
-                       class="w-full h-full object-cover">
-                    <source src="assets/video/hero.mp4" type="video/mp4">
-                </video>
-            </div>
-
-            <script>
-                // If autoplay blocked → show controls and allow user tap
-                (function () {
-                    const v = document.getElementById('heroVid');
-                    if (!v) return;
-                    v.play().catch(() => {
-                        v.setAttribute('controls', 'controls');
-                    });
-                    function unlock() {
-                        v.play().then(() => v.removeAttribute('controls')).catch(()=>{});
-                        window.removeEventListener('click', unlock);
-                        window.removeEventListener('touchstart', unlock);
-                    }
-                    window.addEventListener('click', unlock, { once: true });
-                    window.addEventListener('touchstart', unlock, { once: true });
-                })();
-            </script>
-
-            <p class="text-slate-500 mt-6 text-sm font-medium fade-in-up max-w-2xl mx-auto">
-                A simple 3-minute breakdown of how I understand Digital Marketing — clear, practical and beginner-friendly.
+            <p class="text-slate-600 mb-8 text-lg md:text-xl font-medium fade-in-up max-w-3xl mx-auto leading-relaxed">
+                Digital marketing enthusiast with a UI/UX mindset and cloud fundamentals — combining Local SEO, content,
+                and analytics to make every click more meaningful.
             </p>
 
-            <div class="mt-8 flex justify-center gap-4 fade-in-up delay-200">
-                <a href="#contact" class="px-8 py-3 rounded-full bg-brand-600 text-white font-semibold hover:bg-brand-700 transition shadow-lg">Contact Me</a>
-                <a href="#projects" class="px-8 py-3 rounded-full bg-white text-brand-700 border border-slate-200 font-semibold hover:bg-slate-50 transition shadow-md">View Projects</a>
-                <a href="#" class="px-8 py-3 rounded-full bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 transition">Resume</a>
+            <!-- STACKED VIDEOS CONTAINER -->
+            <div class="flex flex-col gap-16 fade-in-up mt-12 max-w-4xl mx-auto">
+
+                <!-- VIDEO 1 – CASE STUDY: RAJA CYCLE MART -->
+                <div class="w-full">
+                    <div
+                        class="relative w-full aspect-video rounded-xl overflow-hidden shadow-2xl border-4 border-white bg-black group">
+                        <iframe class="w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/v2zb5gzS5lA?rel=0&modestbranding=1&showinfo=0"
+                            title="Case Study: Raja Cycle Mart – Local SEO + UI/UX + Email + Analytics" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <p class="text-slate-500 mt-3 text-sm md:text-base font-medium text-left">
+                        Case Study: how I helped my father’s cycle shop get discovered online using Local SEO, UI/UX and
+                        simple automation.
+                    </p>
+
+                    <!-- Added Project Link -->
+                    <div class="mt-4 text-left">
+                        <a href="https://sumanthgn-cloud.github.io/raja-cycle-mart" target="_blank"
+                            class="inline-flex items-center px-6 py-2.5 rounded-full bg-gradient-to-r from-brand-600 to-accent text-white font-semibold shadow-lg hover:shadow-brand-500/50 hover:-translate-y-0.5 transition-all duration-300 group">
+                            View Live Project <i
+                                class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- VIDEO 2 – DIGITAL MARKETING METRICS -->
+                <div class="w-full">
+                    <div
+                        class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl border-4 border-white bg-black group">
+                        <iframe class="w-full h-full rounded-xl"
+                            src="https://www.youtube.com/embed/T9B5Ecsj2n4?rel=0&modestbranding=1&showinfo=0"
+                            title="Digital Marketing Metrics Explained for Beginners (CTR, CPC, CPA, ROAS)"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+
+                    <p class="text-slate-500 mt-3 text-sm md:text-base font-medium text-left">
+                        Digital Marketing Metrics Explained: CTR, CPC, CPA and ROAS in simple, beginner-friendly
+                        language.
+                    </p>
+                </div>
+
             </div>
+
+            <!-- BUTTONS ROW -->
+            <div class="mt-16 flex flex-wrap justify-center gap-4 fade-in-up delay-200">
+                <a href="#projects"
+                    class="px-6 py-3 rounded-full bg-white text-brand-700 border border-slate-200 font-semibold hover:bg-slate-50 transition shadow-md hover:-translate-y-0.5">
+                    View Projects
+                </a>
+                <!-- Resume Button -->
+                <a href="assets/resume/Sumanth_G_N_Resume_.pdf" download
+                    class="px-6 py-3 rounded-full bg-slate-100 text-slate-700 font-semibold hover:bg-slate-200 transition shadow-sm hover:-translate-y-0.5 border border-slate-200">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i> Resume
+                </a>
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/919113943291" target="_blank" rel="noopener noreferrer"
+                    class="px-6 py-3 rounded-full bg-[#25D366] text-white font-semibold hover:bg-[#20bd5a] transition shadow-lg hover:-translate-y-0.5">
+                    <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> WhatsApp Me
+                </a>
+            </div>
+
+            <p class="text-slate-400 mt-8 text-sm font-medium fade-in-up">
+                Based in Tumkur, open to digital marketing roles and internships across India (remote or on-site).
+            </p>
+
         </div>
     </header>
-    <!-- ================= END HERO SECTION ================= -->
 
-    <!-- Everything below is the SAME as your working site -->
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-8 tracking-tight">About Me</h2>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                I started my journey with a BCA and MCA, but I quickly realized that I enjoyed creativity,
+                communication, and understanding user behavior more than hardcore coding.
+            </p>
+            <p class="text-lg text-slate-600 leading-relaxed mb-6">
+                I started learning by doing—creating a YouTube Shorts channel to understand hooks, music, and timing,
+                and then building a complete digital presence for my father’s cycle shop, "Raja Cycle Mart," instead of
+                waiting for a "real client."
+            </p>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Now, I combine my technical background with digital marketing skills to create user-centric solutions
+                that drive growth. I’m not just listing tools; I’ve actually combined SEO, UI/UX, and automation to help
+                a real local business grow.
+            </p>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center tracking-tight">My Skillset</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Get Discovered -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-brand-100 text-brand-600 flex items-center justify-center mr-4">
+                            <i class="fa-solid fa-magnifying-glass text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Get Discovered</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        On-page SEO, Local SEO for small businesses, keyword research and basic technical SEO.
+                        Comfortable working with Google Business Profile to improve local visibility and map/search
+                        presence.
+                    </p>
+                </div>
+
+                <!-- Convert Visitors -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-lg bg-accent text-white flex items-center justify-center mr-4">
+                            <i class="fa-solid fa-users-viewfinder text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Convert Visitors</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        Content writing, blog ideas, micro-copy, CTA writing, social media captions and Canva/Figma
+                        designs. Able to align copy, layout and visuals so users instantly know what to do next.
+                    </p>
+                </div>
+
+                <!-- Measure & Improve -->
+                <div
+                    class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 md:col-span-2 lg:col-span-1 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div class="flex items-center mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mr-4">
+                            <i class="fa-solid fa-chart-line text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900">Measure & Improve</h3>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed">
+                        Understands key metrics like CTR, CPC, CPA and ROAS. Can read simple dashboards, connect
+                        behaviour with content performance, and suggest small, practical improvements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-4 tracking-tight">Featured Projects</h2>
+            <p class="text-slate-400 mb-12">Real-world digital marketing and technical implementations</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Raja Cycle Mart -->
+                <div
+                    class="bg-white/5 border border-white/15 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden transition-all duration-200 ease-out hover:shadow-cyan-500/25 hover:border-cyan-300/60 hover:-translate-y-1 flex flex-col">
+                    <div
+                        class="h-48 bg-gradient-to-br from-brand-500 to-accent flex items-center justify-center relative group">
+                        <i
+                            class="fa-solid fa-bicycle text-6xl text-white transform group-hover:scale-110 transition-transform duration-300"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Raja Cycle Mart</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
+                            I turned my father’s cycle shop into a simple digital funnel — from ‘cycle repair Tumkur’
+                            search to website visit, to WhatsApp or call.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-4 list-disc pl-4">
+                            <li>Built the entire online presence from scratch: homepage, services and clear CTAs like
+                                ‘Call Now’ and ‘Get Directions’.</li>
+                            <li>Used Local SEO keywords and Google Business Profile so the shop shows up when people
+                                search in Tumkur.</li>
+                            <li>Added email sign-up and basic automation so future offers can be sent without extra
+                                effort.</li>
+                        </ul>
+
+                        <!-- What this proved box -->
+                        <div
+                            class="mt-3 inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/15 text-[11px] text-slate-200 backdrop-blur mb-4">
+                            <i class="fa-solid fa-lightbulb mr-2 text-yellow-400"></i>
+                            Proved that even a very small shop can benefit from simple Local SEO + clear UX.
+                        </div>
+
+                        <div class="mt-auto space-y-3">
+                            <a href="https://sumanthgn-cloud.github.io/raja-cycle-mart" target="_blank"
+                                class="block text-cyan-400 font-semibold hover:text-cyan-300 text-sm">
+                                View Live Project →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Templates -->
+                <div
+                    class="bg-white/5 border border-white/15 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden transition-all duration-200 ease-out hover:shadow-cyan-500/25 hover:border-cyan-300/60 hover:-translate-y-1 flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                        <i class="fa-solid fa-envelope text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Email Marketing Templates</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
+                            Three responsive email layouts focused on real behaviour — reading on mobile, skimming
+                            quickly and clicking one clear CTA.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-4 list-disc pl-4">
+                            <li>Wrote simple, direct copy instead of heavy marketing jargon.</li>
+                            <li>Designed layouts that look clean on mobile first, with clear hierarchy and a single main
+                                action.</li>
+                            <li>Built modular HTML blocks that can be reused inside tools like Brevo.</li>
+                        </ul>
+                        <div class="mt-auto">
+                            <a href="https://sumanthgn-cloud.github.io/email-temp" target="_blank"
+                                class="block text-cyan-400 font-semibold hover:text-cyan-300 text-sm">
+                                View Templates →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Design Apps -->
+                <div
+                    class="bg-white/5 border border-white/15 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden transition-all duration-200 ease-out hover:shadow-cyan-500/25 hover:border-cyan-300/60 hover:-translate-y-1 flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
+                        <i class="fa-solid fa-mobile-screen text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">UI/UX Design Applications</h3>
+                        <p class="text-slate-300 mb-4 text-sm">
+                            Mobile app flows for eco-friendly headphones, healthcare shopping and a burger delivery app
+                            — all designed to reduce thinking time for the user.
+                        </p>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-4 list-disc pl-4">
+                            <li>Used colour, spacing and micro-copy to guide the eye to the main action.</li>
+                            <li>Focused on moving the user from ‘just browsing’ to a clear next step.</li>
+                            <li>Created clickable Figma prototypes so I can walk someone through the experience in a few
+                                minutes.</li>
+                        </ul>
+                        <div class="mt-auto pt-4">
+                            <a href="https://www.behance.net/mrsumanth" target="_blank"
+                                class="block text-cyan-400 font-semibold hover:text-cyan-300 text-sm">
+                                View on Behance →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AWS Cloud Infrastructure -->
+                <div
+                    class="bg-white/5 border border-white/15 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden transition-all duration-200 ease-out hover:shadow-cyan-500/25 hover:border-cyan-300/60 hover:-translate-y-1 flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                        <i class="fa-brands fa-aws text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">AWS Cloud Infrastructure</h3>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-4 list-disc pl-4">
+                            <li>Architected and deployed secure VPC with public and private subnets.</li>
+                            <li>Implemented static website hosting using S3 and CloudFront for global content delivery.
+                            </li>
+                            <li>Configured Load Balancer with Auto Scaling for high availability.</li>
+                            <li>Set up IAM roles and policies following security best practices.</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-white/10">
+                            <p class="text-xs text-slate-400 font-semibold mb-2">Technologies:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">AWS VPC</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">S3</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">CloudFront</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">ELB</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">IAM</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">Terraform</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Serverless App Dev -->
+                <div
+                    class="bg-white/5 border border-white/15 backdrop-blur-xl shadow-lg rounded-2xl overflow-hidden transition-all duration-200 ease-out hover:shadow-cyan-500/25 hover:border-cyan-300/60 hover:-translate-y-1 flex flex-col">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-yellow-500 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="text-xl font-bold text-white mb-2">Serverless Application Dev</h3>
+                        <ul class="text-slate-300 text-sm space-y-2 mb-4 list-disc pl-4">
+                            <li>Developed serverless functions using AWS Lambda for backend processing.</li>
+                            <li>Implemented CloudWatch for monitoring and log analysis.</li>
+                            <li>Created infrastructure as code using Terraform for reproducible deployments.</li>
+                            <li>Designed event-driven architecture for scalable applications.</li>
+                        </ul>
+                        <div class="mt-auto pt-4 border-t border-white/10">
+                            <p class="text-xs text-slate-400 font-semibold mb-2">Technologies:</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">AWS Lambda</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">CloudWatch</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">Terraform</span>
+                                <span class="px-2 py-1 rounded bg-white/10 text-xs text-slate-200">Serverless</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL FOUNDATION SECTION -->
+    <section class="py-20 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center tracking-tight">Technical Foundation</h2>
+            <p class="text-center text-slate-500 mb-12 max-w-2xl mx-auto">
+                How my technical background gives me an edge in marketing.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cloud -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Cloud for Speed & Reliability</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Basic experience with AWS (EC2, S3, VPC, CloudFront, IAM). This helps me understand hosting,
+                        performance and security while working with developers or handling small static sites.
+                    </p>
+                </div>
+
+                <!-- Design -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div
+                        class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Design for Clarity</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        UI/UX skills in wireframing, user flows, and mobile app design. This lets me think from the
+                        user’s viewpoint when creating landing pages, email layouts or funnel steps.
+                    </p>
+                </div>
+
+                <!-- Front-end -->
+                <div
+                    class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md hover:-translate-y-1 transition duration-300">
+                    <div
+                        class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 mb-2">Front-end Friendly</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Comfortable with HTML5, CSS3 and responsive design, which helps in tweaking landing pages, email
+                        templates and simple web content without depending on developers for every small change.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-slate-900 mb-12 text-center tracking-tight">Experience & Education</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">Experience</h3>
+                    <div class="space-y-6">
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
+                            <h4 class="text-lg font-bold text-slate-900">Global Service Desk Intern</h4>
+                            <p class="text-brand-600 font-medium">DXC Technology</p>
+                            <p class="text-slate-400 text-sm mb-3">Dec 2024 – Jun 2025</p>
+                            <ul class="text-slate-600 space-y-2 text-sm list-disc pl-4">
+                                <li>Handled communication with global users, staying calm and clear while solving
+                                    issues.</li>
+                                <li>Managed access permissions and monitoring tools — got used to reading dashboards and
+                                    logs.</li>
+                                <li>Documented common issues with clear, step-by-step SOPs.</li>
+                                <li>Worked with cross-functional teams to suggest small UI/UX improvements for internal
+                                    tools.</li>
+                            </ul>
+                            <p class="text-xs text-slate-500 mt-3 italic">
+                                These experiences improved my communication, attention to detail and comfort with tools
+                                — all of which I bring into marketing projects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">Education & Certs</h3>
+                    <div class="space-y-6">
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
+                            <h4 class="text-lg font-bold text-slate-900">Master of Computer Applications</h4>
+                            <p class="text-slate-600">Siddaganga Institute of Technology</p>
+                            <p class="text-slate-400 text-sm">2022 – 2024</p>
+                        </div>
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
+                            <h4 class="text-lg font-bold text-slate-900">Bachelor of Computer Applications</h4>
+                            <p class="text-slate-600">Vidyavahini First Grade College</p>
+                            <p class="text-slate-400 text-sm">2019 – 2022</p>
+                        </div>
+                        <div
+                            class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition duration-300">
+                            <h4 class="text-lg font-bold text-slate-900">Certifications</h4>
+                            <ul class="text-slate-600 text-sm space-y-1 mt-2">
+                                <li>• UI/UX Design – Udemy</li>
+                                <li>• AWS Cloud Micro-Degree – Micro Degree</li>
+                                <li>• Digital Marketing Fundamentals – NIIT Foundation</li>
+                            </ul>
+                            <p class="text-xs text-slate-500 mt-3 italic">
+                                These give me a structured base in tech, UX and marketing, which I now apply through
+                                real projects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold text-slate-900 mb-6 tracking-tight">Let's build something simple, clear and
+                effective.</h2>
+            <p class="text-slate-600 mb-12 max-w-2xl mx-auto">
+                I’m looking for entry-level roles or internships in digital marketing — SEO, content, social, or junior
+                performance marketing. If you need someone who is curious, disciplined and not afraid to learn by doing,
+                I’d be happy to collaborate.
+            </p>
+
+            <div class="flex flex-col items-center gap-6 mb-12">
+                <a href="mailto:gnsumanth81@gmail.com"
+                    class="flex items-center text-slate-700 hover:text-brand-600 transition text-lg">
+                    <i class="fa-solid fa-envelope mr-3 text-xl"></i> gnsumanth81@gmail.com
+                </a>
+                <a href="tel:+919113943291"
+                    class="flex items-center text-slate-700 hover:text-brand-600 transition text-lg">
+                    <i class="fa-solid fa-phone mr-3 text-xl"></i> +91 91139 43291
+                </a>
+                <!-- Resume Download Link -->
+                <a href="assets/resume/Sumanth_G_N_Resume_.pdf" download
+                    class="flex items-center text-slate-700 hover:text-brand-600 transition text-lg group">
+                    <i
+                        class="fa-solid fa-file-pdf mr-3 text-xl text-red-500 group-hover:scale-110 transition-transform"></i>
+                    Download Resume (PDF)
+                </a>
+            </div>
+
+            <div class="flex justify-center gap-6">
+                <a href="https://linkedin.com/in/sumanthgn21" target="_blank"
+                    class="w-14 h-14 rounded-full bg-slate-100 shadow-md flex items-center justify-center text-slate-700 hover:text-brand-600 hover:scale-110 transition">
+                    <i class="fa-brands fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://github.com/sumanthgn-cloud" target="_blank"
+                    class="w-14 h-14 rounded-full bg-slate-100 shadow-md flex items-center justify-center text-slate-700 hover:text-brand-600 hover:scale-110 transition">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </a>
+                <a href="https://behance.net/mrsumanth" target="_blank"
+                    class="w-14 h-14 rounded-full bg-slate-100 shadow-md flex items-center justify-center text-slate-700 hover:text-brand-600 hover:scale-110 transition">
+                    <i class="fa-brands fa-behance text-xl"></i>
+                </a>
+                <!-- WhatsApp Social Icon -->
+                <a href="https://wa.me/919113943291" target="_blank"
+                    class="w-14 h-14 rounded-full bg-green-50 shadow-md flex items-center justify-center text-green-600 hover:bg-green-100 hover:scale-110 transition">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 bg-slate-900 text-slate-400">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p>Portfolio & case studies: hiresumanth.xyz • Based in Tumkur, open to opportunities across India.</p>
+            <p class="text-sm mt-2">&copy; 2025 Sumanth GN. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/919113943291" target="_blank" rel="noopener noreferrer"
+        class="hidden md:flex fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] text-white rounded-full shadow-xl items-center justify-center hover:scale-110 hover:shadow-2xl transition-all duration-300">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+</body>
+
+</html>
